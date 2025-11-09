@@ -4,18 +4,19 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link
+		<link
 			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
 			rel="stylesheet"
 		/>
-<style>
+		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
 			}
 			body {
-				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
 			}
 			.slide-container {
 				width: 100dvw;
@@ -28,14 +29,15 @@
 				flex: 1;
 				display: flex;
 				flex-direction: column;
-				padding: 80px;
+				padding: 60px 80px;
+			justify-content: center;
 				z-index: 10;
 			}
 			.header {
-				margin-bottom: 40px;
+				margin-bottom: 30px;
 			}
 			.title {
-				font-size: 48px;
+				font-size: 44px;
 				font-weight: 700;
 				margin-bottom: 20px;
 				color: #000000;
@@ -59,65 +61,70 @@
 			}
 			.code-column {
 				flex: 1;
-				max-width: 30%;
+				max-width: 45%;
 			}
 			.code-label {
-				font-size: 22px;
+				font-size: 24px;
 				font-weight: 500;
 				margin-bottom: 12px;
 				color: #333;
 			}
-			.priority-tag {
-				display: inline-block;
-				padding: 4px 8px;
-				border-radius: 4px;
-				font-size: 16px;
-				font-weight: 500;
-				margin-left: 8px;
-			}
-			.priority-high {
-				background-color: #ff7875;
-				color: #fff;
-			}
-			.priority-normal {
-				background-color: #61dafb;
-				color: #000;
-			}
-			.priority-low {
-				background-color: #b7eb8f;
-				color: #135200;
-			}
 			.code-box {
 				background-color: #f8f8f8;
-				border-left: 4px solid;
-				padding: 20px;
+				border-left: 4px solid #61dafb;
+				padding: 24px;
 				border-radius: 8px;
-				min-height: 180px;
+				min-height: 150px;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
-			}
-			.code-box-high {
-				border-left-color: #ff7875;
-			}
-			.code-box-normal {
-				border-left-color: #61dafb;
-			}
-			.code-box-low {
-				border-left-color: #b7eb8f;
 			}
 			.code-text {
 				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 20px;
+				font-size: 18px;
 				white-space: pre-wrap;
 				color: #333;
 				line-height: 1.6;
 			}
-			.code-comment {
-				color: #888;
-				font-style: italic;
+			.transform-arrow {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				margin: 0 20px;
+				padding-top: 60px;
+			}
+			.arrow {
+				color: #61dafb;
+				font-size: 36px;
+			}
+			.transform-label {
+				font-size: 18px;
+				font-weight: 500;
 				margin-top: 8px;
-				font-size: 16px;
+				color: #61dafb;
+			}
+			.explanation {
+				margin-top: 20px;
+				padding: 20px;
+				background-color: rgba(97, 218, 251, 0.1);
+				border-radius: 8px;
+			}
+			.explanation-text {
+				font-size: 18px;
+				line-height: 1.6;
+				color: #333;
+			}
+			.highlight {
+				color: #ff5252;
+				font-weight: 500;
+			}
+			.problem-icon {
+				color: #ff5252;
+				margin-right: 8px;
+			}
+			.solution-icon {
+				color: #4caf50;
+				margin-right: 8px;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -163,14 +170,8 @@
 				font-size: 16px;
 				color: #888;
 			}
-			.description {
-				font-size: 20px;
-				color: #555;
-				margin-bottom: 30px;
-				line-height: 1.4;
-			}
 		</style>
-			<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="./common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -182,44 +183,64 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">우선순위 스케줄링</h1>
-					<p class="description">Fiber는 렌더링 작업에 우선순위를 부여하여 중요한 작업을 먼저 처리합니다</p>
+					<h1 class="title">key가 중요한 이유</h1>
 				</div>
 				<div class="code-comparison">
 					<div class="code-column">
-						<p class="code-label">즉시 <span class="priority-tag priority-high">높음</span></p>
-						<div class="code-box code-box-high">
+						<p class="code-label"><i class="fas fa-times-circle problem-icon"></i>나쁜 예: index를 key로</p>
+						<div class="code-box">
 							<pre class="code-text">
-ReactDOM.flushSync(() =&gt; {
-  setUrgentState(newValue);
-});</pre
+[
+  &lt;li key={0}&gt;Apple&lt;/li&gt;,
+  &lt;li key={1}&gt;Banana&lt;/li&gt;
+]
+
+// Orange 추가 시
+[
+  &lt;li key={0}&gt;Orange&lt;/li&gt;,
+  &lt;li key={1}&gt;Apple&lt;/li&gt;,
+  &lt;li key={2}&gt;Banana&lt;/li&gt;
+]</pre
 							>
-							<p class="code-comment">// 클릭, 입력 같은 사용자 인터랙션</p>
 						</div>
 					</div>
-					<div class="code-column">
-						<p class="code-label">일반 <span class="priority-tag priority-normal">보통</span></p>
-						<div class="code-box code-box-normal">
-							<pre class="code-text">setState(newValue);</pre>
-							<p class="code-comment">// 대부분의 UI 업데이트</p>
-						</div>
+					<div class="transform-arrow">
+						<i class="fas fa-arrow-right arrow"></i>
+						<p class="transform-label">문제 발생</p>
 					</div>
 					<div class="code-column">
-						<p class="code-label">지연 <span class="priority-tag priority-low">낮음</span></p>
-						<div class="code-box code-box-low">
+						<p class="code-label">
+							<i class="fas fa-check-circle solution-icon"></i>좋은 예: 고유 ID를 key로
+						</p>
+						<div class="code-box">
 							<pre class="code-text">
-startTransition(() =&gt; {
-  setLowPriorityState(newValue);
-});</pre
+[
+  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
+  &lt;li key="b2"&gt;Banana&lt;/li&gt;
+]
+
+// Orange 추가 시
+[
+  &lt;li key="o3"&gt;Orange&lt;/li&gt;,
+  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
+  &lt;li key="b2"&gt;Banana&lt;/li&gt;
+]</pre
 							>
-							<p class="code-comment">// 분석, 로깅, 검색 결과 등</p>
 						</div>
 					</div>
 				</div>
+				<div class="explanation">
+					<p class="explanation-text">
+						React: "<span class="highlight">key가 0인 아이템이 변경됐고, key가 1인 아이템도 변경됐네?</span
+						>"<br />
+						→ 실제로는 새 아이템이 추가된 것뿐인데, 모든 아이템이 변경된 것으로 인식<br />
+						→ <span class="highlight">불필요한 리렌더링</span> 발생 → 성능 저하 및 DOM 조작 증가
+					</p>
+				</div>
 			</div>
-			<div class="page-number">18</div>
+			<div class="page-number">11</div>
 		</div>
-			<script>
+		<script>
 			lucide.createIcons();
 		</script>
 	</body>

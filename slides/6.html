@@ -4,18 +4,19 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link
+		<link
 			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
 			rel="stylesheet"
 		/>
-<style>
+		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
 			}
 			body {
-				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
 			}
 			.slide-container {
 				width: 100dvw;
@@ -57,11 +58,9 @@
 				align-items: center;
 				width: 100%;
 			}
-			.code-column-1 {
-				width: 30%;
-			}
-			.code-column-2 {
-				width: 65%;
+			.code-column {
+				flex: 1;
+				max-width: 45%;
 			}
 			.code-label {
 				font-size: 24px;
@@ -103,6 +102,26 @@
 				margin-top: 8px;
 				color: #61dafb;
 			}
+			.problems-list {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+			.problem-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+			.problem-icon {
+				color: #ff5252;
+				font-size: 24px;
+				min-width: 24px;
+			}
+			.problem-text {
+				font-size: 22px;
+				line-height: 1.5;
+				color: #333;
+			}
 			.abstract-elements {
 				position: absolute;
 				width: 100%;
@@ -140,24 +159,6 @@
 				right: -50px;
 				top: 100px;
 			}
-			.note {
-				margin-top: 40px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			.note-text {
-				font-size: 26px;
-				font-weight: 500;
-				color: #333;
-				padding: 16px 30px;
-				background-color: rgba(97, 218, 251, 0.1);
-				border-radius: 8px;
-			}
-			.note-emoji {
-				font-size: 28px;
-				margin-right: 10px;
-			}
 			.page-number {
 				position: absolute;
 				bottom: 30px;
@@ -166,7 +167,7 @@
 				color: #888;
 			}
 		</style>
-			<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="./common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -178,50 +179,46 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">React Element = JavaScript 객체</h1>
+					<h1 class="title">jQuery 시대의 고통</h1>
 				</div>
 				<div class="code-comparison">
-					<div class="code-column-1">
-						<p class="code-label">JSX</p>
+					<div class="code-column">
+						<p class="code-label">jQuery 코드</p>
 						<div class="code-box">
 							<pre class="code-text">
-&lt;div className="container"&gt;
-  &lt;h1&gt;제목&lt;/h1&gt;
-  &lt;p&gt;내용&lt;/p&gt;
-&lt;/div&gt;
-</pre
+$('#user-name').text(newName);
+$('#user-age').text(newAge);
+$('#user-email').text(newEmail);
+$('#user-address').text(newAddress);
+// ... 수십 개의 DOM 직접 조작</pre
 							>
 						</div>
 					</div>
 					<div class="transform-arrow">
-						<i class="fas fa-arrow-right arrow"></i>
-						<p class="transform-label">변환</p>
+						<i class="fas fa-exclamation-triangle arrow" style="color: #ff5252"></i>
+						<p class="transform-label" style="color: #ff5252">문제점</p>
 					</div>
-					<div class="code-column-2">
-						<p class="code-label">JavaScript 객체</p>
-						<div class="code-box">
-							<pre class="code-text">
-{
-  type: 'div',
-  props: {
-    className: 'container',
-    children: [
-      { type: 'h1', props: { children: '제목' } },
-      { type: 'p', props: { children: '내용' } }
-    ]
-  }
-}</pre
-							>
+					<div class="code-column">
+						<div class="problems-list">
+							<div class="problem-item">
+								<i class="fas fa-times-circle problem-icon"></i>
+								<p class="problem-text"><strong>성능</strong> - 빈번한 DOM 조작으로 인한 성능 저하</p>
+							</div>
+							<div class="problem-item">
+								<i class="fas fa-times-circle problem-icon"></i>
+								<p class="problem-text"><strong>유지보수</strong> - 여러 파일에 분산된 UI 로직</p>
+							</div>
+							<div class="problem-item">
+								<i class="fas fa-times-circle problem-icon"></i>
+								<p class="problem-text"><strong>버그</strong> - 상태 추적이 어려워 디버깅 복잡</p>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="note">
-					<p class="note-text">이게 바로 Virtual DOM의 시작!</p>
-				</div>
 			</div>
-			<div class="page-number">5</div>
+			<div class="page-number">6</div>
 		</div>
-			<script>
+		<script>
 			lucide.createIcons();
 		</script>
 	</body>

@@ -4,14 +4,15 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<style>
+		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
 			}
 			body {
-				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
 			}
 			.slide-container {
 				width: 100dvw;
@@ -28,7 +29,7 @@
 				z-index: 10;
 			}
 			.header {
-				margin-bottom: 60px;
+				margin-bottom: 40px;
 			}
 			.title {
 				font-size: 48px;
@@ -47,35 +48,46 @@
 				height: 4px;
 				background-color: #61dafb;
 			}
+			.content-container {
+				display: flex;
+				gap: 40px;
+			}
+			.section {
+				flex: 1;
+			}
 			.section-title {
 				font-size: 32px;
 				font-weight: 600;
-				margin-bottom: 20px;
-				color: #333;
+				margin-bottom: 30px;
+				color: #000000;
 			}
 			.checklist {
 				display: flex;
 				flex-direction: column;
-				gap: 22px;
-				margin-bottom: 40px;
+				gap: 24px;
 			}
 			.checklist-item {
 				display: flex;
-				align-items: center;
+				align-items: flex-start;
 				font-size: 24px;
 				font-weight: 400;
 			}
 			.checklist-item i {
 				color: #61dafb;
-				font-size: 22px;
-				margin-right: 18px;
-				width: 34px;
-				height: 34px;
+				font-size: 20px;
+				margin-right: 16px;
+				margin-top: 4px;
+				width: 28px;
+				height: 28px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				border: 2px solid #61dafb;
 				border-radius: 50%;
+				flex-shrink: 0;
+			}
+			.checklist-item p {
+				line-height: 1.4;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -121,30 +133,8 @@
 				font-size: 16px;
 				color: #888;
 			}
-			.arrow-icon {
-				margin-right: 10px;
-				color: #61dafb;
-			}
-			.next-steps {
-				display: flex;
-				flex-direction: column;
-				gap: 20px;
-			}
-			.step-item {
-				display: flex;
-				align-items: center;
-				font-size: 24px;
-				font-weight: 400;
-			}
-			.step-item i {
-				width: 28px;
-				height: 28px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
 		</style>
-			<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="./common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -156,42 +146,56 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">더 공부하기</h1>
+					<h1 class="title">실무 활용</h1>
 				</div>
-				<h2 class="section-title">추천 자료</h2>
-				<div class="checklist">
-					<div class="checklist-item">
-						<i data-lucide="book-open"></i>
-						<p>React Docs: Reconciliation</p>
+				<div class="content-container">
+					<div class="section">
+						<h2 class="section-title">이해 포인트</h2>
+						<div class="checklist">
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>key warning의 이유 이해</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>불변성의 필요성 파악</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>React.memo 사용 시점 결정</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>순수 컴포넌트 작성 방법</p>
+							</div>
+						</div>
 					</div>
-					<div class="checklist-item">
-						<i data-lucide="video"></i>
-						<p>Lin Clark: Fiber 설명</p>
-					</div>
-					<div class="checklist-item">
-						<i data-lucide="code"></i>
-						<p>React 소스코드</p>
-					</div>
-				</div>
-				<h2 class="section-title">다음 단계</h2>
-				<div class="next-steps">
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>소스코드 읽기</p>
-					</div>
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>미니 React 구현</p>
-					</div>
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>성능 최적화 실습</p>
+					<div class="section">
+						<h2 class="section-title">실전 팁</h2>
+						<div class="checklist">
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>고유한 ID를 key로 사용</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>불변성 유지 패턴 활용</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>React DevTools Profiler로 병목 파악</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>의도적인 리렌더링 제어</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="page-number">22</div>
+			<div class="page-number">21</div>
 		</div>
-			<script>
+		<script>
 			lucide.createIcons();
 		</script>
 	</body>

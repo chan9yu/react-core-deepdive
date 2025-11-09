@@ -4,18 +4,19 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link
+		<link
 			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
 			rel="stylesheet"
 		/>
-<style>
+		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
 			}
 			body {
-				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
 			}
 			.slide-container {
 				width: 100dvw;
@@ -57,9 +58,11 @@
 				align-items: center;
 				width: 100%;
 			}
-			.code-column {
-				flex: 1;
-				max-width: 45%;
+			.code-column-1 {
+				width: 30%;
+			}
+			.code-column-2 {
+				width: 65%;
 			}
 			.code-label {
 				font-size: 24px;
@@ -138,6 +141,24 @@
 				right: -50px;
 				top: 100px;
 			}
+			.note {
+				margin-top: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.note-text {
+				font-size: 26px;
+				font-weight: 500;
+				color: #333;
+				padding: 16px 30px;
+				background-color: rgba(97, 218, 251, 0.1);
+				border-radius: 8px;
+			}
+			.note-emoji {
+				font-size: 28px;
+				margin-right: 10px;
+			}
 			.page-number {
 				position: absolute;
 				bottom: 30px;
@@ -146,7 +167,7 @@
 				color: #888;
 			}
 		</style>
-			<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="./common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -158,30 +179,50 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">Babel의 마법</h1>
+					<h1 class="title">React Element = JavaScript 객체</h1>
 				</div>
 				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label">Before (JSX)</p>
+					<div class="code-column-1">
+						<p class="code-label">JSX</p>
 						<div class="code-box">
-							<p class="code-text">&lt;h1&gt;Hello&lt;/h1&gt;</p>
+							<pre class="code-text">
+&lt;div className="container"&gt;
+  &lt;h1&gt;제목&lt;/h1&gt;
+  &lt;p&gt;내용&lt;/p&gt;
+&lt;/div&gt;
+</pre
+							>
 						</div>
 					</div>
 					<div class="transform-arrow">
 						<i class="fas fa-arrow-right arrow"></i>
-						<p class="transform-label">Babel 변환</p>
+						<p class="transform-label">변환</p>
 					</div>
-					<div class="code-column">
-						<p class="code-label">After (JavaScript)</p>
+					<div class="code-column-2">
+						<p class="code-label">JavaScript 객체</p>
 						<div class="code-box">
-							<p class="code-text">React.createElement('h1', null, 'Hello')</p>
+							<pre class="code-text">
+{
+  type: 'div',
+  props: {
+    className: 'container',
+    children: [
+      { type: 'h1', props: { children: '제목' } },
+      { type: 'p', props: { children: '내용' } }
+    ]
+  }
+}</pre
+							>
 						</div>
 					</div>
 				</div>
+				<div class="note">
+					<p class="note-text">이게 바로 Virtual DOM의 시작!</p>
+				</div>
 			</div>
-			<div class="page-number">4</div>
+			<div class="page-number">5</div>
 		</div>
-			<script>
+		<script>
 			lucide.createIcons();
 		</script>
 	</body>
