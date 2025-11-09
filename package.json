@@ -21,6 +21,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "lucide": "^0.553.0",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {

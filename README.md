@@ -34,18 +34,18 @@ pnpm dev
 ```
 react-core-deepdive/
 ├── index.html                   # 메인 프레젠테이션 파일
-├── assets/
+├── src/
+│   ├── presentation.js         # 프레젠테이션 로직
+│   └── reveal-custom.css       # Reveal.js 커스텀 스타일
+├── public/
+│   ├── contents/
+│   │   └── 1.html ~ 24.html   # 개별 슬라이드
 │   ├── css/
-│   │   ├── reveal-custom.css   # Reveal.js 커스텀 스타일
-│   │   └── common-style.css    # 슬라이드 공통 스타일
-│   ├── js/
-│   │   └── presentation.js     # 프레젠테이션 로직
-│   ├── md/
-│   │   └── script.md           # 발표 스크립트
+│   │   └── common-style.css   # 슬라이드 공통 스타일
 │   └── favicon/
-│       └── image.png           # 파비콘
-└── contents/
-    └── 1.html ~ 24.html        # 개별 슬라이드
+│       └── image.png          # 파비콘
+└── docs/
+    └── script.md              # 발표 스크립트
 ```
 
 ## 기술 스택
@@ -57,4 +57,4 @@ react-core-deepdive/
 
 ## 라이선스
 
-MIT
+이 프로젝트는 MIT 라이선스 하에 있습니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
