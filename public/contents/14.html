@@ -1,230 +1,220 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
-			.content-wrapper {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
-			}
-			.header {
-				margin-bottom: 50px;
-			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
-			.code-comparison {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				width: 100%;
-			}
-			.code-column {
-				flex: 1;
-				max-width: 45%;
-			}
-			.code-label {
-				font-size: 24px;
-				font-weight: 500;
-				margin-bottom: 12px;
-				color: #333;
-			}
-			.code-label .bad {
-				color: #e74c3c;
-			}
-			.code-label .good {
-				color: #2ecc71;
-			}
-			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 24px;
-				border-radius: 8px;
-				min-height: 150px;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-			}
-			.bad-box {
-				border-left: 4px solid #e74c3c;
-			}
-			.good-box {
-				border-left: 4px solid #2ecc71;
-			}
-			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 22px;
-				white-space: pre-wrap;
-				color: #333;
-				line-height: 1.6;
-			}
-			.transform-arrow {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				margin: 0 20px;
-			}
-			.arrow {
-				color: #61dafb;
-				font-size: 36px;
-			}
-			.transform-label {
-				font-size: 18px;
-				font-weight: 500;
-				margin-top: 8px;
-				color: #61dafb;
-			}
-			.explanation {
-				margin-top: 40px;
-				background-color: rgba(97, 218, 251, 0.05);
-				padding: 20px;
-				border-radius: 8px;
-			}
-			.explanation-title {
-				font-size: 22px;
-				font-weight: 600;
-				margin-bottom: 10px;
-				color: #333;
-			}
-			.explanation-text {
-				font-size: 20px;
-				line-height: 1.5;
-				color: #444;
-			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				bottom: 100px;
-			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 100px;
-				transform: rotate(45deg);
-				right: -50px;
-				top: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
-			}
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
+		<style>
+			.content {
+				display: flex;
+				flex-direction: column;
+				gap: 28px;
+				align-items: center;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.code-comparison {
+				display: flex;
+				justify-content: center;
+				align-items: stretch;
+				gap: 24px;
+				width: 100%;
+			}
+
+			.code-column {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.code-label {
+				font-size: 1.25rem;
+				font-weight: 600;
+				margin-bottom: 14px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.bad-label {
+				color: #e74c3c;
+			}
+
+			.good-label {
+				color: #52c41a;
+			}
+
+			.code-card {
+				background-color: #fff;
+				border-radius: 12px;
+				padding: 28px 32px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				transition: all 0.3s ease;
+			}
+
+			.code-card.bad {
+				border: 2px solid rgba(231, 76, 60, 0.2);
+			}
+
+			.code-card.good {
+				border: 2px solid rgba(82, 196, 26, 0.2);
+			}
+
+			.code-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+			}
+
+			.code-text {
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: 1.15rem;
+				white-space: pre-wrap;
+				color: var(--color-text-secondary);
+				line-height: 1.7;
+			}
+
+			.explanation {
+				width: 100%;
+				background-color: rgba(97, 218, 251, 0.08);
+				padding: 24px 32px;
+				border-radius: 12px;
+				border-left: 4px solid var(--color-primary);
+			}
+
+			.explanation-title {
+				font-size: 1.3rem;
+				font-weight: 600;
+				margin-bottom: 12px;
+				color: var(--color-text);
+			}
+
+			.explanation-text {
+				font-size: 1.05rem;
+				line-height: 1.7;
+				color: var(--color-text-secondary);
+			}
+
+			/* 반응형 대응 */
+			@media (min-height: 1080px) {
+				.content {
+					gap: 32px;
+				}
+				.code-comparison {
+					gap: 28px;
+				}
+				.code-label {
+					font-size: 1.4rem;
+					margin-bottom: 16px;
+					gap: 12px;
+				}
+				.code-card {
+					padding: 32px 36px;
+				}
+				.code-text {
+					font-size: 1.25rem;
+				}
+				.explanation {
+					padding: 28px 36px;
+				}
+				.explanation-title {
+					font-size: 1.4rem;
+					margin-bottom: 14px;
+				}
+				.explanation-text {
+					font-size: 1.15rem;
+				}
+			}
+
+			@media (max-height: 900px) {
+				.content {
+					gap: 24px;
+				}
+				.code-comparison {
+					gap: 20px;
+				}
+				.code-label {
+					font-size: 1.15rem;
+					margin-bottom: 12px;
+					gap: 8px;
+				}
+				.code-card {
+					padding: 24px 28px;
+				}
+				.code-text {
+					font-size: 1.05rem;
+					line-height: 1.6;
+				}
+				.explanation {
+					padding: 20px 26px;
+				}
+				.explanation-title {
+					font-size: 1.2rem;
+					margin-bottom: 10px;
+				}
+				.explanation-text {
+					font-size: 0.95rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">불변성의 중요성</h1>
+			<div class="header">
+				<!-- Section Navigator -->
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item active">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
+				<h1 class="title">불변성의 중요성</h1>
+			</div>
+			<div class="content">
 				<div class="code-comparison">
 					<div class="code-column">
-						<p class="code-label"><span class="bad">❌ 나쁜 예</span></p>
-						<div class="code-box bad-box">
+						<p class="code-label bad-label">❌ 나쁜 예: 직접 수정</p>
+						<div class="code-card bad">
 							<pre class="code-text">
-// 직접 수정
-user.age = 26;
-setUser(user);  
+const [user, setUser] = useState({
+  name: "찬규",
+  age: 28
+});
 
-// 참조가 동일 → 변경 감지 불가</pre
+// 참조가 동일 → 변화 감지 실패
+user.age = 26;
+setUser(user);</pre
 							>
 						</div>
 					</div>
-					<div class="transform-arrow">
-						<i class="fas fa-arrow-right arrow"></i>
-						<p class="transform-label">vs</p>
-					</div>
 					<div class="code-column">
-						<p class="code-label"><span class="good">✅ 좋은 예</span></p>
-						<div class="code-box good-box">
+						<p class="code-label good-label">✅ 좋은 예: 새 객체 생성</p>
+						<div class="code-card good">
 							<pre class="code-text">
-// 새 객체 생성
-setUser({ ...user, age: 26 });
+const [user, setUser] = useState({ 
+  name: "찬규",
+  age: 28 
+});
 
-// 새로운 참조 → 변경 감지</pre
+// 새 참조 → 리렌더링
+setUser({ ...user, age: 26 });</pre
 							>
 						</div>
 					</div>
 				</div>
+
 				<div class="explanation">
-					<h3 class="explanation-title">왜 불변성이 중요한가?</h3>
+					<h3 class="explanation-title">💡 불변성(Immutability)이란?</h3>
 					<p class="explanation-text">
-						React는 상태 변경을 감지할 때 <strong>참조 비교</strong>만 수행합니다. 객체를 직접 수정하면
-						참조가 그대로라 React가 변화를 인식하지 못합니다. 새 객체를 생성해야 참조가 바뀌어 리렌더링이
-						발생합니다.
+						데이터를 직접 수정하지 않고, 변경이 필요하면 새로운 데이터를 만드는 원칙입니다.
+						<br />
+						React는 얕은 비교(===)로 상태 변화를 감지하므로, 객체의 참조가 바뀌어야 리렌더링이 발생합니다.
 					</p>
 				</div>
 			</div>

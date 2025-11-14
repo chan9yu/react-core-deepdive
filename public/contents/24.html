@@ -1,107 +1,70 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 		<style>
-			.content-wrapper {
-				flex: 1;
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
+				justify-content: flex-start;
 				align-items: center;
 				padding: 80px;
-				z-index: 10;
+				position: relative;
 			}
-			.qa-icon-wrapper {
-				width: 140px;
-				height: 140px;
-				border-radius: 50%;
-				background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 50px;
-				box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
-				animation: pulse 2s ease-in-out infinite;
-			}
-			.qa-icon-wrapper svg {
-				width: 80px;
-				height: 80px;
-				color: white;
-				stroke-width: 2;
+			.qa-icon {
+				color: var(--color-primary);
+				margin-bottom: 48px;
 			}
 			.qa-heading {
-				font-size: 72px;
+				font-size: 4rem;
 				font-weight: 700;
-				margin-bottom: 30px;
+				margin-bottom: 32px;
 				text-align: center;
-				color: #1a1a1a;
-				letter-spacing: -0.02em;
 			}
 			.contact-info {
-				margin-top: 50px;
+				margin-top: 56px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				gap: 30px;
 			}
-			.presenter-card {
-				background: rgba(97, 218, 251, 0.08);
-				border: 2px solid rgba(97, 218, 251, 0.2);
-				border-radius: 20px;
-				padding: 40px 60px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 20px;
-			}
-			.presenter-name {
-				font-size: 36px;
-				font-weight: 700;
-				color: #1a1a1a;
-			}
-			.presenter-title {
-				font-size: 22px;
-				font-weight: 400;
-				color: #666;
+			.contact-text {
+				font-size: 1.5rem;
+				font-weight: 500;
+				margin-bottom: 18px;
+				color: var(--color-text-secondary);
 			}
 			.contact-links {
 				display: flex;
-				gap: 30px;
-				margin-top: 10px;
+				gap: 36px;
 			}
 			.contact-link {
+				font-size: 1.25rem;
+				font-weight: 400;
+				color: var(--color-text-tertiary);
 				display: flex;
 				align-items: center;
-				gap: 12px;
-				font-size: 20px;
-				font-weight: 500;
-				color: #333;
-				padding: 12px 24px;
-				background: white;
-				border-radius: 12px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-				transition: transform 0.2s;
 			}
-			.contact-link:hover {
-				transform: translateY(-2px);
+			.contact-icon {
+				margin-right: 12px;
+				color: var(--color-primary);
 			}
-			.contact-link svg {
-				width: 24px;
-				height: 24px;
-				color: #00b4d8;
-				stroke-width: 2.5;
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				overflow: hidden;
 			}
-			.thank-you-text {
-				font-size: 28px;
-				color: #666;
-				text-align: center;
-				margin-top: 20px;
-				line-height: 1.6;
+			.circle {
+				position: absolute;
+				border: 2px solid var(--color-primary);
+				border-radius: 50%;
+				opacity: 0.1;
 			}
 			.circle-1 {
 				width: 300px;
@@ -121,6 +84,11 @@
 				right: 200px;
 				bottom: 150px;
 			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid var(--color-primary);
+				opacity: 0.05;
+			}
 			.rectangle-1 {
 				width: 250px;
 				height: 120px;
@@ -128,51 +96,38 @@
 				left: 200px;
 				top: 100px;
 			}
-
-			@keyframes pulse {
-				0%,
-				100% {
-					transform: scale(1);
-				}
-				50% {
-					transform: scale(1.05);
-				}
-			}
 		</style>
 	</head>
 	<body>
 		<div class="slide-container">
+			<!-- Section Navigator -->
+			<div class="section-nav">
+				<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+				<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+				<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+				<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+				<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
+			</div>
+
 			<div class="abstract-elements">
 				<div class="circle circle-1"></div>
 				<div class="circle circle-2"></div>
 				<div class="circle circle-3"></div>
 				<div class="rectangle rectangle-1"></div>
 			</div>
-			<div class="content-wrapper">
-				<div class="qa-icon-wrapper">
-					<i data-lucide="heart"></i>
-				</div>
-				<h1 class="qa-heading animate-fade-in-up delay-2">감사합니다! 🙏</h1>
-				<p class="thank-you-text animate-fade-in delay-3">React를 더 깊이 이해하는 시간이 되셨길 바랍니다.</p>
-				<div class="contact-info">
-					<div class="presenter-card animate-scale-in delay-4">
-						<p class="presenter-name">여찬규</p>
-						<p class="presenter-title">Frontend Developer</p>
-						<div class="contact-links">
-							<a href="https://chan9yu.dev" class="contact-link" target="_blank">
-								<i data-lucide="globe"></i>
-								<span>Blog</span>
-							</a>
-							<a href="https://github.com/chan9yu" class="contact-link" target="_blank">
-								<i data-lucide="github"></i>
-								<span>GitHub</span>
-							</a>
-							<a href="https://www.linkedin.com/in/chan9yu/" class="contact-link" target="_blank">
-								<i data-lucide="linkedin"></i>
-								<span>LinkedIn</span>
-							</a>
-						</div>
-					</div>
+			<i data-lucide="heart" class="qa-icon" width="80" height="80"></i>
+			<h1 class="qa-heading">감사합니다! 🙏</h1>
+			<div class="contact-info">
+				<p class="contact-text">여찬규</p>
+				<div class="contact-links">
+					<p class="contact-link">
+						<i data-lucide="globe" class="contact-icon" width="20" height="20"></i>
+						blog: blog9yu.dev
+					</p>
+					<p class="contact-link">
+						<i data-lucide="github" class="contact-icon" width="20" height="20"></i>
+						github: @chan9yu
+					</p>
 				</div>
 			</div>
 			<div class="page-number">24</div>

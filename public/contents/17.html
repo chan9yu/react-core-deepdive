@@ -4,16 +4,9 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
 			.slide-container {
 				width: 100dvw;
 				height: 100dvh;
@@ -28,25 +21,8 @@
 				padding: 80px;
 				z-index: 10;
 			}
-			.header {
-				margin-bottom: 50px;
-			}
 			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
+				font-size: var(--font-size-title);
 			}
 			.flow-diagram {
 				display: flex;
@@ -54,27 +30,27 @@
 				width: 100%;
 				align-items: center;
 				position: relative;
-				margin-top: 20px;
+				margin-top: var(--spacing-small);
 			}
 			.comparison-section {
 				display: flex;
 				width: 100%;
-				margin-bottom: 60px;
+				margin-bottom: var(--spacing-section);
 				position: relative;
 				z-index: 2;
 			}
 			.comparison-box {
 				flex: 1;
-				padding: 20px;
+				padding: var(--spacing-small);
 				position: relative;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 			}
 			.comparison-title {
-				font-size: 24px;
+				font-size: 1.5rem;
 				font-weight: 700;
-				margin-bottom: 20px;
+				margin-bottom: var(--spacing-small);
 				text-align: center;
 			}
 			.comparison-content {
@@ -88,7 +64,7 @@
 			.stack-bar {
 				width: 80%;
 				height: 40px;
-				background-color: #f44336;
+				background-color: var(--color-error);
 				position: relative;
 				display: flex;
 				justify-content: center;
@@ -96,8 +72,9 @@
 				border-radius: 4px;
 			}
 			.stack-bar p {
-				color: #ffffff;
+				color: var(--color-background);
 				font-weight: 500;
+				font-size: 1rem;
 			}
 			.fiber-units {
 				width: 80%;
@@ -108,7 +85,7 @@
 			.fiber-unit {
 				width: 15%;
 				height: 40px;
-				background-color: #61dafb;
+				background-color: var(--color-primary);
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -118,16 +95,17 @@
 				background-color: rgba(97, 218, 251, 0.7);
 			}
 			.comparison-caption {
-				font-size: 16px;
+				font-size: 1rem;
 				margin-top: 16px;
 				text-align: center;
 				max-width: 80%;
+				line-height: 1.4;
 			}
 			.flow-divider {
 				width: 80%;
 				height: 2px;
-				background-color: #e0e0e0;
-				margin: 10px 0 40px 0;
+				background-color: var(--color-border);
+				margin: 10px 0 var(--spacing-item) 0;
 			}
 			.features-section {
 				display: flex;
@@ -135,40 +113,63 @@
 				width: 100%;
 				position: relative;
 				z-index: 2;
+				gap: var(--spacing-small);
 			}
 			.feature-item {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				width: 30%;
+				flex: 1;
 				padding: 15px;
 			}
-			.feature-icon {
+			.feature-icon-wrapper {
 				width: 80px;
 				height: 80px;
 				border-radius: 50%;
-				background-color: #f8f8f8;
+				background-color: var(--color-code-bg);
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				margin-bottom: 16px;
 			}
-			.feature-icon i {
-				font-size: 36px;
-				color: #61dafb;
+			.feature-icon {
+				color: var(--color-primary);
 			}
 			.feature-title {
-				font-size: 20px;
+				font-size: 1.25rem;
 				font-weight: 700;
 				margin-bottom: 8px;
 				text-align: center;
-				color: #000000;
+				color: var(--color-text);
 			}
 			.feature-desc {
-				font-size: 16px;
+				font-size: 1rem;
 				text-align: center;
 				line-height: 1.4;
-				color: #333333;
+				color: var(--color-text-secondary);
+			}
+
+			/* 반응형 대응 */
+			@media (max-height: 1000px) {
+				.comparison-title {
+					font-size: 1.25rem;
+				}
+				.stack-bar p {
+					font-size: 0.9rem;
+				}
+				.comparison-caption {
+					font-size: 0.9rem;
+				}
+				.feature-icon-wrapper {
+					width: 64px;
+					height: 64px;
+				}
+				.feature-title {
+					font-size: 1.1rem;
+				}
+				.feature-desc {
+					font-size: 0.9rem;
+				}
 			}
 			.abstract-elements {
 				position: absolute;
@@ -179,7 +180,7 @@
 			}
 			.circle {
 				position: absolute;
-				border: 2px solid #61dafb;
+				border: 2px solid var(--color-primary);
 				border-radius: 50%;
 				opacity: 0.1;
 			}
@@ -197,7 +198,7 @@
 			}
 			.rectangle {
 				position: absolute;
-				border: 2px solid #61dafb;
+				border: 2px solid var(--color-primary);
 				opacity: 0.05;
 			}
 			.rectangle-1 {
@@ -207,16 +208,7 @@
 				right: -100px;
 				bottom: 100px;
 			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
-			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
 		<div class="slide-container">
@@ -227,6 +219,14 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
+					<!-- Section Navigator -->
+					<div class="section-nav">
+						<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+						<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+						<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+						<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+						<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
+					</div>
 					<h1 class="title">Fiber의 해결책</h1>
 				</div>
 				<div class="flow-diagram">
@@ -239,7 +239,7 @@
 							<p class="comparison-caption">한 번에 모든 렌더링 작업 완료, UI 멈춤 😱</p>
 						</div>
 						<div class="comparison-box">
-							<div class="comparison-title">Fiber</div>
+							<div class="comparison-title">Fiber Architecture</div>
 							<div class="comparison-content">
 								<div class="fiber-units">
 									<div class="fiber-unit"></div>
@@ -255,22 +255,22 @@
 					<div class="flow-divider"></div>
 					<div class="features-section">
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-pause-circle"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="pause-circle" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">인터럽트 가능</h3>
 							<p class="feature-desc">렌더링 작업을 중단하고 더 중요한 작업을 먼저 처리 가능</p>
 						</div>
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-sort-amount-down-alt"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="bar-chart-3" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">우선순위 스케줄링</h3>
 							<p class="feature-desc">사용자 인터랙션과 같은 중요 작업에 우선순위 부여</p>
 						</div>
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-sync-alt"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="refresh-cw" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">동시성</h3>
 							<p class="feature-desc">여러 렌더링 작업을 병렬로 처리하며 효율적인 UI 업데이트</p>
